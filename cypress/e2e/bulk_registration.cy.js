@@ -23,6 +23,10 @@ describe('Technical Test - Web Tables (PT Transportasi Jakarta)', () => {
       webTablesPage.registerUser(user);
       webTablesPage.verifyUserInTable(user.email);
     });
+
+    // Toast passed
+    cy.showToast('4.1 Positive Test PASSED: Semua User CSV Berhasil Didaftarkan!', 'success');
+    cy.wait(3000);
   });
 
   // 4.2 NEGATIVE TEST CASE
@@ -30,7 +34,7 @@ describe('Technical Test - Web Tables (PT Transportasi Jakarta)', () => {
     const invalidUser = {
       firstName: 'Testing',
       lastName: 'Negative',
-      email: '', 
+      email: '',
       age: '28',
       salary: '8000000',
       department: 'QA Automation'
@@ -40,11 +44,13 @@ describe('Technical Test - Web Tables (PT Transportasi Jakarta)', () => {
     webTablesPage.fillRegistrationForm(invalidUser);
     webTablesPage.submitForm();
 
-    // Validasi error 
     webTablesPage.verifyFormHasError();
-    webTablesPage.closeModal();
+    cy.wait(3000);
 
-    // Verifikasi data tidak masuk ke tabel
+    // Toast passed
+    cy.showToast('4.2 Negative Test PASSED: Form Validation Error Berhasil Terverifikasi!', 'info');
+    cy.wait(3000);
+    webTablesPage.closeModal();
     webTablesPage.verifyUserNotInTable('Testing');
   });
 });
