@@ -16,6 +16,7 @@ module.exports = defineConfig({
       '*criteo.com',
       '*amazon-adsystem.com',
     ],
+    experimentalStudio: true,
     setupNodeEvents(on, config) {},
   },
 });
