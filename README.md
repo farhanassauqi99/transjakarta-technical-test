@@ -1,6 +1,6 @@
 # Technical Test – Cypress Automation (PT Transportasi Jakarta)
 
-Repositori ini berisi implementasi automasi pengujian untuk asesmen teknis posisi Quality Assurance Automation di PT Transportasi Jakarta. Pengujian mencakup skenario **Positive Test**, **Negative Test**, serta skenario **Interactions Test case** menggunakan Cypress, Page Object Model (POM), dan Data-Driven Testing berbasis file CSV.
+Repositori ini berisi implementasi automasi pengujian untuk asesmen teknis posisi Quality Assurance Automation di PT Transportasi Jakarta. Pengujian mencakup skenario **Positive Test**, **Negative Test**, serta skenario **Nilai Plus (Interactions)** menggunakan Cypress, Page Object Model (POM), dan Data-Driven Testing berbasis file CSV.
 
 ---
 
@@ -13,23 +13,24 @@ Repositori ini berisi implementasi automasi pengujian untuk asesmen teknis posis
   - Memvalidasi data setiap user berhasil tersimpan dan tampil di baris tabel.
 - **Negative Test Case**:
   - Menguji validasi form saat field wajib (**Email**) dikosongkan.
-  - Memastikan form memicu status validasi error (`was-validated`) dan data tidak tersimpan ke dalam tabel.
+  - Memastikan form mentrigger status validasi error (`was-validated`) dan data tidak tersimpan ke dalam tabel.
 
 ### 2. Nilai Plus (Bonus Skenario)
 - **Droppable**: Melakukan aksi *drag and drop* elemen hingga status berubah menjadi *Dropped!*.
-- **Resizable**: Melakukan aksi *resize* container element hingga mencapai dimensi ukuran 400x200 piksel.
+- **Resizable**: Melakukan aksi *resize* container element hingga mencapai dimensi ukuran 400x200 piksel pada kedua box.
 
 ---
 
 ## Arsitektur & Pola Desain
 
 - **Design Pattern**: **Page Object Model (POM)** memisahkan selector dan aksi antarmuka (`cypress/pages/WebTablesPage.js`) dari skenario pengujian agar kode modular dan mudah dipelihara.
-- **Data Parser**: Menggunakan library `neat-csv` untuk parsing file CSV mentah menjadi array objek JavaScript.
+- **Data-Driven Testing**: Menggunakan library `neat-csv` untuk parsing file CSV mentah menjadi array objek JavaScript.
+- **Visual Feedback (Custom Command)**: Menambahkan custom command `cy.showToast()` di `cypress/support/commands.js` untuk memunculkan notifikasi status visual melayang (*floating toast*) pada browser saat perekaman layar.
 - **Resilience Strategy**: Menambahkan penanganan `blockHosts` pada konfigurasi Cypress untuk memblokir script iklan pihak ketiga di DemoQA agar proses uji berjalan stabil dan lancar.
 
 ---
 
-## Struktur Proyek
+## Struktur Project
 
 ```text
 ├── cypress/
@@ -41,7 +42,7 @@ Repositori ini berisi implementasi automasi pengujian untuk asesmen teknis posis
 │   ├── pages/
 │   │   └── WebTablesPage.js          # Implementasi Page Object Model
 │   └── support/
-│       ├── commands.js
+│       ├── commands.js               # Custom command showToast
 │       └── e2e.js
 ├── .gitignore
 ├── cypress.config.js                 # Konfigurasi timeout & blockHosts
@@ -52,19 +53,19 @@ Repositori ini berisi implementasi automasi pengujian untuk asesmen teknis posis
 
 ---
 
-## Prasyarat
+## Requirement
 
-* Node.js versi 16.x atau lebih baru
-* npm versi 8.x atau lebih baru
+* Node.js versi 16.x atau latest
+* npm versi 8.x atau latest
 
 ---
 
-## Panduan Menjalankan Pengujian
+## Panduan Menjalankan Testing
 
 1. Clone repositori dan masuk ke direktori proyek:
 ```bash
-git clone [https://github.com/farhanassauqi99/](https://github.com/farhanassauqi99/)<NAMA_REPO>.git
-cd <NAMA_REPO>
+git clone [https://github.com/farhanassauqi99/transjakarta-technical-test.git](https://github.com/farhanassauqi99/transjakarta-technical-test.git)
+cd transjakarta-technical-test
 
 ```
 
@@ -76,7 +77,7 @@ npm install
 ```
 
 
-3. Eksekusi Pengujian:
+3. Eksekusi Test:
 * **Mode Interaktif (Cypress UI Runner):**
 ```bash
 npx cypress open
@@ -92,13 +93,10 @@ npx cypress run --spec "cypress/e2e/bulk_registration.cy.js"
 # Menjalankan skenario Nilai Plus (Droppable & Resizable)
 npx cypress run --spec "cypress/e2e/bonus_interactions.cy.js"
 
-# Menjalankan seluruh skenario sekaligus
-npx cypress run
+# Menjalankan seluruh skenario sekaligus dengan otomatis
+npm test
 
 ```
-
-
-
 
 
 ---
@@ -108,3 +106,4 @@ npx cypress run
 * **Nama**: Mohammad Farhan
 * **Posisi**: Quality Assurance Engineer
 
+```
