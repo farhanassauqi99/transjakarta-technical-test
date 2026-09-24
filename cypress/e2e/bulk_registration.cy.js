@@ -50,7 +50,7 @@ describe('Technical Test - Web Tables (PT Transportasi Jakarta)', () => {
     // Toast passed
     cy.showToast('4.2 Negative Test PASSED: Form Validation Error Berhasil Terverifikasi!', 'info');
     cy.wait(3000);
-    webTablesPage.closeModal();
     webTablesPage.verifyUserNotInTable('Testing');
+    webTablesPage.closeModal();
   });
 });

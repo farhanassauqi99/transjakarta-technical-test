@@ -54,8 +54,8 @@ describe('Nilai Plus (Opsional) - Interactions Test', () => {
       .trigger('mousedown', { which: 1, force: true });
     cy.get('#resizableBoxWithRestriction').then(($box) => {
       $box[0].style.setProperty('transition', 'all 1.2s ease-in-out', 'important');
-      $box[0].style.setProperty('width', '400px', 'important');
-      $box[0].style.setProperty('height', '200px', 'important');
+      $box[0].style.setProperty('width', '500px', 'important');
+      $box[0].style.setProperty('height', '300px', 'important');
     });
     cy.wait(1400);
     cy.get('#resizableBoxWithRestriction .react-resizable-handle')
@@ -63,8 +63,8 @@ describe('Nilai Plus (Opsional) - Interactions Test', () => {
 
     // Validate ukuran box atas tepat 400x200
     cy.get('#resizableBoxWithRestriction')
-      .should('have.css', 'width', '400px')
-      .and('have.css', 'height', '200px');
+      .should('have.css', 'width', '500px')
+      .and('have.css', 'height', '300px');
     cy.wait(1000);
 
     // Box bawah

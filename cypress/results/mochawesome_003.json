@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-09-15T13:26:44.231Z",
+    "end": "2026-09-15T13:27:01.692Z",
+    "duration": 17461,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d5abdf45-ffa8-4298-9cf9-9691ad00d09d",
+      "title": "",
+      "fullFile": "cypress\\e2e\\bulk_registration.cy.js",
+      "file": "cypress\\e2e\\bulk_registration.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d9bcdc8a-cc3d-4199-a68e-5b67ec73f45d",
+          "title": "Technical Test - Web Tables (PT Transportasi Jakarta)",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "4.1 Positive Test - Berhasil mendaftarkan banyak user dari file CSV",
+              "fullTitle": "Technical Test - Web Tables (PT Transportasi Jakarta) 4.1 Positive Test - Berhasil mendaftarkan banyak user dari file CSV",
+              "timedOut": null,
+              "duration": 14252,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "testUsers.forEach(user => {\n  cy.log(`Registering: ${user.firstName} ${user.lastName}`);\n  _WebTablesPage.default.registerUser(user);\n  _WebTablesPage.default.verifyUserInTable(user.email);\n});",
+              "err": {},
+              "uuid": "1970f303-b0b2-4f7f-bb57-fc4ff2d12412",
+              "parentUUID": "d9bcdc8a-cc3d-4199-a68e-5b67ec73f45d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "4.2 Negative Test - Gagal submit saat field email dikosongkan",
+              "fullTitle": "Technical Test - Web Tables (PT Transportasi Jakarta) 4.2 Negative Test - Gagal submit saat field email dikosongkan",
+              "timedOut": null,
+              "duration": 2819,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const invalidUser = {\n  firstName: 'Testing',\n  lastName: 'Negative',\n  email: '',\n  age: '28',\n  salary: '8000000',\n  department: 'QA Automation'\n};\n_WebTablesPage.default.clickAdd();\n_WebTablesPage.default.fillRegistrationForm(invalidUser);\n_WebTablesPage.default.submitForm();\n// Validasi error \n_WebTablesPage.default.verifyFormHasError();\n_WebTablesPage.default.closeModal();\n// Verifikasi data tidak masuk ke tabel\n_WebTablesPage.default.verifyUserNotInTable('Testing');",
+              "err": {},
+              "uuid": "ba240e54-4a3a-48a4-ad65-a55082a77df1",
+              "parentUUID": "d9bcdc8a-cc3d-4199-a68e-5b67ec73f45d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1970f303-b0b2-4f7f-bb57-fc4ff2d12412",
+            "ba240e54-4a3a-48a4-ad65-a55082a77df1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 17071,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.1.0"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

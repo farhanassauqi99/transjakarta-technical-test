@@ -1,0 +1,129 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-09-15T13:25:25.310Z",
+    "end": "2026-09-15T13:25:44.023Z",
+    "duration": 18713,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "52f3ccce-f9bc-4a78-b8a6-5a677baecb1a",
+      "title": "",
+      "fullFile": "cypress\\e2e\\bonus_interactions.cy.js",
+      "file": "cypress\\e2e\\bonus_interactions.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5817994a-a874-428a-99f9-a18b94211713",
+          "title": "Interactions Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Bonus 1 - do Drag and Drop",
+              "fullTitle": "Interactions Test Bonus 1 - do Drag and Drop",
+              "timedOut": null,
+              "duration": 17431,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://demoqa.com/droppable');\n// Trigger drag and drop via mouse events\ncy.get('#draggable').trigger('mousedown', {\n  which: 1\n});\ncy.get('#simpleDropContainer #droppable').trigger('mousemove').trigger('mouseup', {\n  force: true\n});\n// Verifikasi teks berubah menjadi 'Dropped!'\ncy.get('#simpleDropContainer #droppable p').should('have.text', 'Dropped!');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 15000ms: expected '<p>' to have text 'Dropped!', but the text was 'Drop Here'",
+                "estack": "AssertionError: Timed out retrying after 15000ms: expected '<p>' to have text 'Dropped!', but the text was 'Drop Here'\n    at Context.eval (webpack://technical-test-tj/./cypress/e2e/bonus_interactions.cy.js:20:7)",
+                "diff": "- 'Drop Here'\n+ 'Dropped!'\n"
+              },
+              "uuid": "ce90db98-09a1-480c-8161-d6900b7c4eb3",
+              "parentUUID": "5817994a-a874-428a-99f9-a18b94211713",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Melakukan Resize element ke ukuran 400x200",
+              "fullTitle": "Interactions Test Melakukan Resize element ke ukuran 400x200",
+              "timedOut": null,
+              "duration": 1155,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://demoqa.com/resizable');\n// Target box dan handle resize di pojok kanan bawah\ncy.get('#resizableBoxWithRestriction').should('be.visible');\n// Geser handle resize\ncy.get('#resizableBoxWithRestriction .react-resizable-handle').trigger('mousedown', {\n  which: 1\n}).trigger('mousemove', {\n  clientX: 450,\n  clientY: 250,\n  force: true\n}).trigger('mouseup', {\n  force: true\n});\n// Manipulate style via invoke agar tepat 400x200\ncy.get('#resizableBoxWithRestriction').invoke('attr', 'style', 'width: 400px; height: 200px;').should('have.css', 'width', '400px').and('have.css', 'height', '200px');",
+              "err": {},
+              "uuid": "6df432b1-c39e-4a43-9a12-f4cb56af565a",
+              "parentUUID": "5817994a-a874-428a-99f9-a18b94211713",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6df432b1-c39e-4a43-9a12-f4cb56af565a"
+          ],
+          "failures": [
+            "ce90db98-09a1-480c-8161-d6900b7c4eb3"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 18586,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.1.0"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
